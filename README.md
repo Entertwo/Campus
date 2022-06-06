@@ -4,7 +4,7 @@
 校园互助平台，运用IntelliJ IDEA 2021.1.3开发环境、MySQL数据库、Elasticsearch搜索引擎设计开发的一个基于SpringBoot的校园互助平台。主要用于同学间的互相帮助。该网站由五个功能模块和一个主页组成，五个功能模块分别为互助模块、需求模块、代送模块、留言模块、后台管理模块。互助模块是将不属于自己的商品展示，用户选择商品进行代送；需求模块是用户在互助模块发布的商品信息，提供确认收货、评分、查看代送状态、同意取消代送和修改需求商品等功能；代送模块是在互助模块由用户点击代送，进行商品代送信息模块，包含取消代送、已送达等按钮；留言模块是用户在该网站问题反馈或者是反馈在网站遇到问题；后台管理模块是管理员登陆后跳转到的模块，管理模块可以对用户管理，对管理员管理，对留言管理，对商品管理和图形化界面展示。
 
 #### 软件架构
-软件架构说明
+
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0606/162853_ff48079e_9708949.png "屏幕截图.png")
 
 #### 使用说明
@@ -43,7 +43,7 @@
 ![输入图片说明](user/src/main/resources/static/assets/images/SendOrderimage.png)
  **需求订单**   
 ![输入图片说明](user/src/main/resources/static/assets/images/demanOrderimage.png)
- **评分按钮**   
+ **评分按钮**     
 ![输入图片说明](user/src/main/resources/static/assets/images/scorebuttonimage.png)
  **留言界面**   
 ![输入图片说明](user/src/main/resources/static/assets/images/contactimage.png)

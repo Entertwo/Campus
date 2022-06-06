@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>互助平台</title>
+
+    <!-- <link rel="stylesheet" href="assets/css/style-starter.css"> -->
+
+    <link rel="stylesheet" href="assets/css/administrator.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+<!--w3l-header-->
+<div id="app">
+    <el-container>
+
+        <el-aside width="200px">
+            <div class="left">
+
+                <el-row class="tac" style="height: 100%;">
+                    <el-col :span="12" style="height: 100%;">
+                        <el-menu default-active="2-3" class="el-menu-vertical-demo" @open="handleOpen"
+                                 @close="handleClose"
+                                 background-color="#304156" text-color="#fff" active-text-color="#ffd04b" align="left">
+                            <el-menu-item index="">后端管理系统</el-menu-item>
+                            <el-menu-item index="1" @click="index()">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title" >首页</span>
+                            </el-menu-item>
+                            <el-submenu index="2" >
+                                <template slot="title">
+                                    <i class="el-icon-setting"></i>
+                                    <span>系统管理</span>
+                                </template>
+                                <div align="center">
+                                    <el-menu-item index="2-1" @click="user()">用户管理</el-menu-item>
+                                    <el-menu-item index="2-2" @click="managePeople()">管理员管理</el-menu-item>
+                                    <el-menu-item index="2-3"  @click="shop()">商品信息</el-menu-item>
+                                </div>
+                            </el-submenu>
+                            <!-- <el-menu-item index="2">
+                              <i class="el-icon-menu"></i>
+                              <span slot="title">导航二</span>
+                            </el-menu-item> -->
+                            <!-- <el-menu-item index="3" disabled>
+                              <i class="el-icon-document"></i>
+                              <span slot="title">导航三</span>
+                            </el-menu-item>
+                            <el-menu-item index="4">
+                              <i class="el-icon-setting"></i>
+                              <span slot="title">导航四</span>
+                            </el-menu-item> -->
+                            <el-menu-item index="3" @click="contact()">
+                                <i class="el-icon-document"></i>
+                                <span slot="title" >留言板</span>
+                            </el-menu-item>
+                        </el-menu>
+                    </el-col>
+                </el-row>
+            </div>
+
+        </el-aside>
+        <el-main>
+            <div class="header">
+                <div class="header_name"><a href="manageIndex.html" class="aaaa">首页</a> / 系统管理 / 商品管理</div>
+            </div>
+            <div class="right">
+                <div class="card-panel" href="#icon-peoples">
+                    <img class="tubiao" src="assets/images/tubiao1.png" height="60px" width="60px">
+                    <div class="tubiaotext">
+                        <div class="tubiaotexttop">留言量</div>
+                        <div class="tubiaotextbottom">{{contactCount}}条</div>
+                    </div>
+                </div>
+                <div class="card-panel">
+                    <img class="tubiao" src="assets/images/tubiao2.png" height="60px" width="60px">
+                    <div class="tubiaotext">
+
+                        <div class="tubiaotexttop">用户数</div>
+                        <div class="tubiaotextbottom">{{userCount}}</div>
+                    </div>
+                </div>
+                <div class="card-panel">
+                    <img class="tubiao" src="assets/images/tubiao3.png" height="60px" width="60px">
+                    <div class="tubiaotext">
+                        <div class="tubiaotexttop">总交易金额</div>
+                        <div class="tubiaotextbottom">{{shopSumPrice}}元</div>
+                    </div>
+                </div>
+                <div class="card-panel">
+                    <img class="tubiao" src="assets/images/tubiao4.png" height="60px" width="60px">
+                    <div class="tubiaotext">
+                        <div class="tubiaotexttop">商品数</div>
+                        <div class="tubiaotextbottom">{{shopCount}}件</div>
+                    </div>
+                </div>
+
+                <!--搜索框-->
+                <div class="input_search">
+                    <el-row>
+                        <el-input v-model="search" placeholder="输入商品id搜索" type="number"  style="width: 200px;"></el-input>
+                        <el-button icon="el-icon-search" circle style="margin-left: 20px;" @click="searchShopId()"></el-button>
+                    </el-row>
+                </div>
+
+                <!-- 用户数据 -->
+                <div class="dataTable">
+                    <!-- <div class="button">
+                         <el-row>
+                             <el-button type="primary" class="button1">
+                                 <i class="el-icon-plus"></i>
+                                 <span>新增</span>
+                             </el-button>
+                         </el-row>
+                     </div>-->
+                    <template>
+                        <el-table :data="tableData" style="width: 100%">
+                            <el-table-column label="商品id" width="180" align="center">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.row.id }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="商品名" width="180" align="center">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.row.name }}</span>
+                                    <!-- <el-popover trigger="hover" placement="top">
+                                      <p>姓名: {{ scope.row.name }}</p>
+                                      <p>住址: {{ scope.row.address }}</p>
+                                      <div slot="reference" class="name-wrapper">
+                                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                                      </div>
+                                    </el-popover> -->
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="商品地址" width="180" align="center">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.row.address }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="商品价格" width="180" align="center">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.row.price }}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="商家名" width="180" align="center">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.row.user.name }}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column label="操作" align="center">
+                                <template slot-scope="scope">
+                                    <el-button size="mini" @click="edit(scope.$index, scope.row)">查看详细</el-button>
+                                    <el-button size="mini" type="danger" @click="deleteEdit(scope.$index, scope.row)">
+                                        删除
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </template>
+
+
+                    <!--分页组件-->
+                    <div class="pagination-container pagin">
+
+                        <el-pagination class="pagiantion" @current-change="handleCurrentChange"
+                                       :current-page="pagination.currentPage" :page-size="pagination.pageSize"
+                                       layout="total, prev, pager, next, jumper" :total="pagination.total">
+
+                        </el-pagination>
+
+                    </div>
+
+                </div>
+            </div>
+        </el-main>
+
+    </el-container>
+
+    <!-- 修改弹窗 -->
+    <div class="add-form">
+        <el-dialog title="详情页" :visible.sync="dialogFormVisibleEdit">
+            <el-form :model="table" label-position="right" label-width="100px" :rules="rules" ref="table">
+
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="商品id">
+                            <el-input :disabled="true" v-model="table.id"/>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="商品名" prop="name">
+                            <el-input v-model="table.name"/>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="商品地址" prop="address">
+                            <el-input v-model="table.address"/>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="商品价格(元)" prop="price">
+                            <el-input v-model.number="table.price"/>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <el-form-item label="商品描述" prop="shopDesc">
+                            <el-input v-model="table.shopDesc"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="用户id">
+                            <el-input v-model="table.userId"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="代送id">
+                            <el-input v-model="table.sendId"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="代送时间">
+                            <el-input v-model="table.startTime"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="收货时间">
+                            <el-input v-model="table.endTime"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+
+            </el-form>
+            <div slot="footer" class="dialog-footer" align="center">
+                <el-button @click="cancel()">取消</el-button>
+                <el-button type="primary" @click="handleEdit('table')">修改</el-button>
+            </div>
+
+        </el-dialog>
+
+    </div>
+</div>
+
+
+</script>
+<!-- /move top -->
+</section>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- Template JavaScript -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+
+<script src="assets/js/owl.carousel.js"></script>
+
+
+<!-- <script src="assets/js/bootstrap.min.js"></script> -->
+
+<script src="assets/js/vue.js"></script>
+
+<script src="assets/plugins/elementui/index.js"></script>
+
+<script src="assets/js/axios-0.18.0.js"></script>
+
+<script>
+
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            contactCount: 10000,
+            userCount: 10000,
+            shopCount: 10000,
+            shopSumPrice: 10000,
+
+            search: '',
+
+            pagination: {//分页相关模型数据
+                currentPage: 1,//当前页码
+                pageSize: 5,//每页显示的记录数
+                total: 0,//总记录数
+            },
+
+            table: [{
+                id: '01',
+                name: '王小虎',
+                address: 1888888888,
+                shopDesc: 4,
+                price: "",
+                userId: "",
+                user: {
+                    name: "1",
+                    id: 58
+
+                },
+                sendId: "",
+                startTime: "",
+                endTime: "",
+                tradeFiled: "",
+            }],
+
+            dialogFormVisibleEdit: false,
+
+            tableData: [{
+                id: '01',
+                name: '王小虎',
+                address: 1888888888,
+                shopDesc: 4,
+                price: "",
+                userId: "",
+                user: {
+                    name: "1",
+                    id: 58,
+
+                },
+                sendId: "",
+                startTime: "",
+                endTime: "",
+                tradeFiled: "",
+
+            }, {
+
+                id: '01',
+                name: '王小虎',
+                address: 1888888888,
+                shopDesc: 4,
+                price: "",
+                userId: "",
+                user: {
+                    name: "1",
+                    id: 58,
+
+                },
+                sendId: "",
+                startTime: "",
+                endTime: "",
+                tradeFiled: "",
+
+
+            }],
+
+            rules: {
+                price: [
+                    {required: true, message: '商品价格为必填项', trigger: 'blur'},
+                    { maxlength: 16,type: 'number', message: '不超过16位', trigger: 'blur'}
+                ],
+                shopDesc: [
+                    { required: true, message: '商品描述为必填项', trigger: 'blur' },
+                    {  maxlength: 100 , message: '不超过100个字', trigger: 'blur' }
+                ],
+                address: [
+                    { required: true, message: '商品地址为必填项', trigger: 'blur' },
+                    { maxlength: 50, message: '商品地址不超过50个字', trigger: 'blur' }
+                ],
+                name: [
+                    { required: true, message: '商品名称为必填项', trigger: 'blur' },
+                    { maxlength: 50, message: '商品名称不超过50个字', trigger: 'blur' }
+                ],
+            },
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            this.getAllCount();
+            this.searchShopId();
+        },
+
+        methods: {
+            getAllCount() {
+                this.getContactCount();
+                this.getUserCount();
+                this.getShopCount();
+                this.getShopPriceCount();
+            },
+            getContactCount() {
+                axios.get("http://localhost:10010/contacts/count").then((res) => {
+                    this.contactCount = res.data;
+                })
+            },
+            getUserCount() {
+                axios.get("http://localhost:10010/users/count").then((res) => {
+                    this.userCount = res.data;
+                })
+            },
+            getShopCount() {
+                axios.get("http://localhost:10010/shops/count").then((res) => {
+                    this.shopCount = res.data;
+                })
+            },
+            getShopPriceCount() {
+                axios.get("http://localhost:10010/shops/sum/price").then((res) => {
+                    this.shopSumPrice = res.data;
+                })
+            },
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            //切换页码
+            handleCurrentChange(currentPage) {
+                this.pagination.currentPage = currentPage;
+                this.searchShopId();
+            },
+
+            //查看全部商品
+            /*getAllShop() {
+                axios.get("http://localhost:10010/shops/" + this.pagination.currentPage + "/" + this.pagination.pageSize).then((res) => {
+                    this.tableData = res.data.records;
+                    this.pagination.pageSize = res.data.size;
+                    this.pagination.total = res.data.total;
+                })
+            },*/
+            searchShopId(){
+                parm="?id="+this.search;
+                axios.get("http://localhost:10010/shops/" + this.pagination.currentPage + "/" + this.pagination.pageSize+parm).then((res) => {
+                    this.tableData = res.data.records;
+                    this.pagination.pageSize = res.data.size;
+                    this.pagination.total = res.data.total;
+                })
+            },
+            //取消
+            cancel() {
+                this.dialogFormVisibleEdit = false;
+                this.table = {};
+                this.$message.info("取消当前操作");
+            },
+            //修改框处理修改
+            handleEdit(table) {
+                this.$refs[table].validate((valid) => {
+                    if (valid) {
+                        axios.put("http://localhost:10010/shops", this.table).then((res) => {
+                            if (res.data) {
+                                this.$message.success("修改成功");
+                            } else {
+                                this.$message.error("添加失败")
+                            }
+                        }).finally(() => {
+                            this.dialogFormVisibleEdit = false;
+                            this.getAllShop();
+                        })
+                    } else {
+                        this.$message.error("表单验证失败");
+                        return false;
+                    }
+                });
+
+            },
+            //弹出编辑框
+            edit(index, row) {
+                this.table = row;
+                this.table.user.name = row.user.name;
+                this.dialogFormVisibleEdit = true;
+
+            },
+            deleteEdit(index,row){
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.delete("http://localhost:10010/shops/"+row.id).then((res) => {
+                        if (res.data) {
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                            });
+                        } else {
+                            this.$message({
+                                type: 'info',
+                                message: '删除失败'
+                            });
+                        }
+                    }).finally(()=>{
+                        this.getAllShop();
+                    })
+                    ;
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
+            user(){
+                window.location.href="manageUser.html";
+            },
+            managePeople(){
+                window.location.href="managePeople.html";
+            },
+            shop(){
+                window.location.href="manageShop.html";
+            },
+            contact(){
+                window.location.href="manageContact.html";
+            },
+            index(){
+                window.location.href="manageIndex.html";
+            },
+
+        }
+    })
+
+
+</script>
+
+
+</body>
+
+</html>

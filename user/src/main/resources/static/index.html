@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>基于SpringBoot的校园互助平台</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+       -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+
+    <!-- 引入样式 -->
+
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+<div id="app">
+    <!--w3l-header-->
+
+    <header class="w3l-header-nav">
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">校园 <span>互助</span></a>
+                <!-- if logo is image enable this
+                              <a class="navbar-brand" href="#index.html">
+                                  <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                              </a> -->
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">首页</a>
+                        </li>
+                        <li class="nav-item @@about__active">
+                            <a class="nav-link" href="mutualhelp.html">互助</a>
+                        </li>
+                        <!-- <li class="nav-item @@services__active">
+                           <a class="nav-link" href="secondhand.html">二手交易</a>
+                         </li>-->
+                        <li class="nav-item @@contact__active">
+                            <a class="nav-link" href="contact.html">留言</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="login.html">登陆</a>
+                        </li>
+                        <li class="nav-item register">
+                            <a class="nav-link" href="register.html">注册</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        <!--//nav-->
+    </header>
+    <!-- //w3l-header -->
+    <section class="w3l-main-slider">
+        <!-- main-slider -->
+        <div class="companies20-content">
+            <div class="companies-wrapper">
+                <div class="owl-one owl-carousel owl-theme">
+                    <div class="item">
+                        <li>
+                            <div class="slider-info banner-view">
+                                <div class="banner-info container">
+                                    <h5 class="banner-text">{{rim[0].rimTextH5}}</h5>
+                                    <h3 class="banner-text">{{rim[0].rimTextH3}}</h3>
+                                    <p>{{rim[0].rimP}}</p>
+                                    <a href="mutualhelp.html" class="btn btn-primary btn-style">探索更多</a>
+                                    <a href="contact.html" class="btn transparent-btn btn-style ml-2">留言</a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="item">
+                        <li>
+                            <div class="slider-info  banner-view banner-top1">
+                                <div class="banner-info container">
+                                    <h5 class="banner-text">{{rim[1].rimTextH5}}</h5>
+                                    <h3 class="banner-text">{{rim[1].rimTextH3}}</h3>
+                                    <p>{{rim[1].rimP}}</p>
+                                    <a href="mutualhelp.html" class="btn btn-primary btn-style">探索更多</a>
+                                    <a href="contact.html" class="btn transparent-btn btn-style ml-2">留言</a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="item">
+                        <li>
+                            <div class="slider-info banner-view banner-top2">
+                                <div class="banner-info container">
+                                    <h5 class="banner-text">安师校园互助平台</h5>
+                                    <h3 class="banner-text">让心灵与城市共美，让行动为美的增辉。</h3>
+                                    <p>Let the soul and the city, let the action increase in the United States.</p>
+                                    <a href="mutualhelp.html" class="btn btn-primary btn-style">探索更多</a>
+                                    <a href="contact.html" class="btn transparent-btn btn-style ml-2">留言</a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /main-slider -->
+    </section>
+    <!-- 走进互助平台 -->
+    <section class="w3l-about" id="about">
+        <div class="new-block py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="row middle-section">
+                    <div class="col-lg-6 section-width align-self">
+                        <h5>5个月</h5>
+                        <h2>打造出来的校园互助平台</h2>
+                        <p class="mt-4 pb-3">高校校园互帮互助机制的建立归根结底是实现“以德树人”，
+                            培养当代大学生的明德至善之心，
+                            让思想政治教育与各类课程形成协同效应，
+                            引导学生感悟和践行社会主义核心价值观。
+                            互帮互助活动面向全校同学，
+                            组织同学们从小事做起，
+                            从身边事做起，奉献点点滴滴的爱心，
+                            使“滴水之源”取之不尽、用之不竭，并能激起同学们的爱心去帮助困难同学，使有困难的学生被爱包围。</p>
+                        <a href="mutualhelp.html" class="btn btn-outline-primary btn-outline-style mt-4">走进互助平台</a>
+                    </div>
+                    <div class="col-lg-6 history-info mt-lg-0 mt-5 pt-lg-0 pt-md-4">
+                        <div class="position-relative img-border">
+                            <img src="assets/images/about.jpg" class="img-fluid video-popup-image" alt="video-popup">
+
+
+                            <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                            <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                                <iframe src="#" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 二手交易 -->
+    <section id="services" class="home-services py-5">
+        <div class="container py-lg-5 py-md-4">
+            <h3 class="title-big">互助商品展示</h3>
+            <div @click="Change" style="cursor: pointer">换一换</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" v-for="(item,index) in dataList">
+                    <div class="box-wrap">
+                        <!-- <el-input
+                                v-model="item.price"
+                                placeholder="请输入内容"
+                                v-for="(item,index) in dataList"
+                                :key="index"
+                              ></el-input> -->
+                        <!-- <h4>{{dataList[0].price}}</h4> -->
+                        <!-- 列表数据 -->
+                        <img :src="dataList[index].pic" width="55px" height="55px" class="image">
+                        <h4 class="number">
+                            0{{index+1}}
+                        </h4>
+                        <h4><a href="#url">
+                            {{dataList[index].name}} </a></h4>
+                        <p style="color: black">
+                            商品描述：{{dataList[index].shopDesc}}
+                        </p>
+                        <p>
+                            商品地址：{{dataList[index].address}}
+                        </p>
+                        <p style="color: red;">
+                            商品价格：¥{{dataList[index].price}}
+                        </p>
+                        <!--<a href="#read" class="read">商品界面</a>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="w3l-stats">
+        <div class="main-w3 py-5" id="stats">
+            <div class="container py-lg-3">
+                <h3 class="title-big">信息图</h3>
+                <div class="row main-cont-wthree-fea">
+                    <div class="col-lg-3 col-6 mt-4">
+                        <div class="grids-speci1">
+                            <span class="fa fa-building" aria-hidden="true"></span>
+                            <h3 class="title-spe">3000+</h3>
+                            <p>小时经验</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mt-4">
+                        <div class="grids-speci1">
+                            <span class="fa fa-file-text" aria-hidden="true"></span>
+                            <h3 class="title-spe">10K+</h3>
+                            <p>测试</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mt-sm-4 mt-3">
+                        <div class="grids-speci1">
+                            <span class="fa fa-trophy" aria-hidden="true"></span>
+                            <h3 class="title-spe">10K+</h3>
+                            <p>代码量</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mt-sm-4 mt-3">
+                        <div class="grids-speci1">
+                            <span class="fa fa-twitter" aria-hidden="true"></span>
+                            <h3 class="title-spe">5</h3>
+                            <p>粉丝</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--  //Fun facts section -->
+    <section class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container py-lg-4">
+                <div class="row footer-top-29">
+                    <div class="footer-list-29 col-lg-4">
+                        <h6 class="footer-title-29">关于公司</h6>
+                        <p>自主测试，研发，设计，构造，来自于安阳师范学院，根据黑马程序员学习技术构建</p>
+                        <div class="main-social-footer-29 mt-4">
+                            <!--<a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                            <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                            <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                            <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-8 footer-list-29 footer-1 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">留言</h6>
+                        <ul>
+                            <li>
+                                <p><span class="fa fa-map-marker"></span> 安阳师范学院</p>
+                            </li>
+                            <li><a href=""><span class="fa fa-phone"></span> 17630966258</a></li>
+                            <li><a href="" class="mail"><span class="fa fa-envelope-open-o"></span>
+                                1176616218@qq.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 footer-list-29 footer-2 mt-lg-0 mt-5">
+
+                        <ul>
+                            <h6 class="footer-title-29">有用的链接</h6>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">互助平台</a></li>
+                            <!--<li><a href="#blog"> Blog posts</a></li>-->
+                            <li><a href="contact.html">留言</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">最新消息</h6>
+                        <div class="footer-post mb-4">
+                            <a href="#blog-single">给你带来不一样的体验..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+                        <div class="footer-post">
+                            <a href="#blog-single">创造高质量服务..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<section class="w3l-footer-29-main w3l-copyright">
+    <div class="container">
+        <div class="bottom-copies">
+            <p class="copy-footer-29 text-center"> 2022.5欢迎体验.</p>
+        </div>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        &#10548;
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- /move top -->
+</section>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+
+<script src="assets/js/owl.carousel.js"></script>
+
+<!-- script for carousel1  首页导航栏-->
+<script>
+    $(document).ready(function () {
+        $('.owl-one').owlCarousel({
+            loop: false,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+</script>
+<!-- //script -->
+<!-- script for owlcarousel 平台滚动 -->
+<script>
+    $(document).ready(function () {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+</script>
+
+<script src="assets/js/vue.js"></script>
+
+<script src="assets/plugins/elementui/index.js"></script>
+
+<script src="assets/js/axios-0.18.0.js"></script>
+
+<script>
+    Vue.config.productionTip = false;
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            rim: [
+                {
+                    rimTextH5: '安师校园互助平台',
+                    rimTextH3: '让心灵与城市共美，让行动为美的增辉。',
+                    rimP: 'Let the soul and the city, let the action increase in the United States.',
+                }, {
+                    rimTextH5: '安师校园互助平台',
+                    rimTextH3: '你可以信赖的人',
+                    rimP: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt dolorem labore fuga quasi alias fugit beatae, nulla.',
+                }, {
+                    rimTextH5: '安师校园互助平台',
+                    rimTextH3: '让心灵与城市共美，让行动为美的增辉。',
+                    rimP: 'Let the soul and the city, let the action increase in the United States.',
+                }
+            ],
+            dataList: [
+                {
+                    price: 56,
+                    name: '王',
+                    description: '上海市普陀区金沙江路 1518 弄',
+                    id: '01',
+                    pic: "assets/images/logo.png",
+                }, {
+                    price: 56,
+                    name: '小虎',
+                    description: '上海市普陀区金沙江路 1518 弄',
+                    id: '02',
+                    pic: "assets/images/logo.png",
+                }, {
+                    price: 56,
+                    name: '虎',
+                    description: '上海市普陀区金沙江路 1518 弄',
+                    id: "03",
+                    pic: "/assets/images/logo.png",
+                }
+            ],
+            //当前页要展示的列表数据
+            // backgroundDiv : {
+            //   backgroundImage : 'url(/assets/images/logo.png)',
+            //   backgroundRepeat : 'no-repeat' ,
+            //   backgroundSize : '40% 40%',
+            //   },
+            formData: {},//表单数据
+            pagination: {//分页相关模型数据
+                currentPage: 1,//当前页码
+                pageSize: 10,//每页显示的记录数
+                total: 0,//总记录数
+                type: "",
+                name: "",
+                description: ""
+            },
+            shopCount: 0,
+            currentPage: 0,
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            this.getAllShop();
+            this.getShopCount();
+            this.getRims();
+        },
+        methods: {
+            click() {
+                //this.isShow=!this.isShow;
+                //console.log(this.isShow);
+            },
+           /* getShopCount() {
+                axios.get("http://localhost:10010/shops/count").then((res) => {
+                    this.shopCount = res.data;
+                })
+            },*/
+            getShopCount() {
+                axios.get("http://localhost:10010/shops/tradeFiled/count").then((res) => {
+                    this.shopCount = res.data;
+                })
+            },
+            Change() {
+                if (this.shopCount <= this.currentPage * 3) {
+                    this.currentPage = 1;
+                } else {
+                    this.currentPage = this.currentPage + 1;
+                }
+                axios.get("http://localhost:10010/shops/cycle/" + this.currentPage).then((res) => {
+                    this.dataList = res.data.records;
+                })
+            },
+            //查看全部商品
+            getAllShop() {
+               /* axios.get("http://localhost:10010/shops/cycle/" + this.currentPage).then((res) => {
+                    this.dataList = res.data.records;
+                    // this.pagination.pageSize = res.data.size;
+                    // this.pagination.total = res.data.total;
+                })*/
+                this.Change();
+            },
+            //查看轮播图
+            getRims() {
+                axios.get("http://localhost:10010/rims").then((res) => {
+                    this.rim = res.data;
+                    // this.pagination.pageSize = res.data.size;
+                    // this.pagination.total = res.data.total;
+                })
+            },
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

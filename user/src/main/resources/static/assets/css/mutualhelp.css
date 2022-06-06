@@ -1,0 +1,89 @@
+.add-btn {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.title_font_color {
+    color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.demo-table-expand {
+    font-size: 0;
+}
+
+.demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.title {
+    margin-left: 100px;
+}
+
+.addButton {
+    position: relative;
+    padding-left: 30%;
+    float: left;
+
+    text-align: center;
+}
+
+.search {
+    position: relative;
+    float: left;
+    width: 300px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.searchButtonText {
+    width: 300px;
+}
+
+.searchButton {
+    position: relative;
+    float: left;
+    text-align: center;
+}
+
+.pagin {
+    float: right;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+.data_left {
+    float: left;
+}
+
+.data_right {
+    float: right;
+}
+
+.price {
+    color: red;
+}
+
+.danger-button{
+    height: 52px;
+    width: 160px;
+    font-family: "Cabin", serif !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+    background-color: #ea1a3c !important;
+}
+.danger-button:hover{
+    background-color: #ea3a60 !important;
+    border: 1px solid #ea3a60 !important;
+}
+

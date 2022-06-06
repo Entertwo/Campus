@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>互助平台</title>
+
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+
+    <link rel="stylesheet" href="assets/css/mutualhelp.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+<!--w3l-header-->
+<div id="app">
+    <header class="w3l-header-nav">
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">校园 <span>互助</span></a>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item @@home__active">
+                            <a class="nav-link" href="index.html">首页</a>
+                        </li>
+                        <li class="nav-item  @@home__active">
+                            <a class="nav-link" href="mutualhelp.html">互助</a>
+                        </li>
+                        <!--<li class="nav-item @@services__active">
+                            <a class="nav-link" href="secondhand.html">二手交易</a>
+                        </li>-->
+                        <li>
+                            <el-dropdown>
+                                  <span class="el-dropdown-link">
+                                    订单中心<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <a href="SendOrder.html">
+                                        <el-dropdown-item>代送订单</el-dropdown-item>
+                                    </a>
+                                    <a href="demanOrder.html">
+                                        <el-dropdown-item>需求订单</el-dropdown-item>
+                                    </a>
+                                   <!-- <a href="">
+                                        <el-dropdown-item>二手订单</el-dropdown-item>
+                                    </a>-->
+                                    <!-- <el-dropdown-item divided>蚵仔煎</el-dropdown-item> -->
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="contact.html">留言</a>
+                        </li>
+
+                    </ul>
+
+
+                    <!--//search-right-->
+
+                    <div class="box-support">
+                        <p>{{cookie}} 欢迎 <a href="index.html" @click="exit()"><i class="el-icon-circle-close"></i>退出</a></p>
+                    </div>
+                    <!--//search-right-->
+
+                </div>
+            </div>
+        </nav>
+        <!--//nav-->
+    </header>
+    <!-- //w3l-header -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-3">
+                <h2 class="title">联系我们</h2>
+            </div>
+        </div>
+    </section>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="index.html">首页</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>联系</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- contact-form 2 -->
+<section class="w3l-contact-2 py-5">
+  <div class="contact-infubd section-gap py-lg-5 py-md-4">
+      <div class="container">
+          <div class="contact-grids d-grid">
+              <div class="contact-left">
+                  <h4>给我们留言</h4>
+                  <h6><a>有关我们产品项目的问题或建议，请随时留言联系我们.</a></h6>
+                  <div class="hours">
+                      <h6 class="info mt-3">Email:</h6>
+                      <p> <a >
+                          1176616218@qq.com</a></p>
+                      <h6 class="info mt-3">地址:</h6>
+                      <p> <a >安阳师范学院</a></p>
+                      <h6 class="info mt-3">联系:</h6>
+                      <p class="margin-top"><a >+1888888888</a></p>
+                  </div>
+              </div>
+              
+              
+              <div class="contact-right">
+                  <form action="#" method="post" class="signin-form">
+                      <div class="input-grids">
+                        <el-input v-model="tableDate.name" placeholder="你的姓名*"></el-input>
+                        <el-input v-model="tableDate.userPhone" placeholder="您的电话*"></el-input>
+                        <el-input v-model="tableDate.problemType" placeholder="问题类型*"></el-input>
+                      </div>
+                      <div class="form-input">
+                        <el-input
+                        type="textarea"
+                        :rows="2"
+                        placeholder="问题详情*"
+                        v-model="tableDate.problemDetails">
+                      </el-input>
+                      </div>
+                      <!--<button class="btn btn-style btn-primary" @click="sendMessage()">发送消息</button>-->
+                      <el-button type="danger" class="danger-button"
+                                  @click="sendMessage()">发送消息</el-button>
+                  </form>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+    <!-- team -->
+    <section class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container py-lg-4">
+                <div class="row footer-top-29">
+                    <div class="footer-list-29 col-lg-4">
+                        <h6 class="footer-title-29">关于公司</h6>
+                        <p>自主测试，研发，设计，构造，来自于安阳师范学院，根据黑马程序员学习技术构建</p>
+                        <div class="main-social-footer-29 mt-4">
+                            <!--<a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                            <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                            <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                            <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-8 footer-list-29 footer-1 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">留言</h6>
+                        <ul>
+                            <li>
+                                <p><span class="fa fa-map-marker"></span> 安阳师范学院</p>
+                            </li>
+                            <li><a href=""><span class="fa fa-phone"></span> 17630966258</a></li>
+                            <li><a href="" class="mail"><span class="fa fa-envelope-open-o"></span>
+                                1176616218@qq.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 footer-list-29 footer-2 mt-lg-0 mt-5">
+
+                        <ul>
+                            <h6 class="footer-title-29">有用的链接</h6>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">互助平台</a></li>
+                            <!--<li><a href="#blog"> Blog posts</a></li>-->
+                            <li><a href="contact.html">留言</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">最新消息</h6>
+                        <div class="footer-post mb-4">
+                            <a href="#blog-single">给你带来不一样的体验..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+                        <div class="footer-post">
+                            <a href="#blog-single">创造高质量服务..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+
+                    </div>
+                    <!--<div class="col-lg-12 footer-list-29 footer-4 mt-5">
+                      <div class="column1 align-self">
+                        <h6 class="footer-title-29 mb-1">Subscribe to our Newsletter </h6>
+                        <p>Enter your email and receive the latest news from us.</p>
+                      </div>
+                      <div class="column1">
+                        <form action="#" class="subscribe" method="post">
+                          <input type="email" name="email" placeholder="Your Email Address" required="">
+                          <button><span class="fa fa-envelope-o"></span></button>
+                        </form>
+                      </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center"> 2022.5欢迎体验.</p>
+            </div>
+        </div>
+
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            &#10548;
+        </button>
+    </section>
+</div>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- /move top -->
+</section>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- Template JavaScript -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+
+<script src="assets/js/owl.carousel.js"></script>
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/vue.js"></script>
+
+<script src="assets/plugins/elementui/index.js"></script>
+
+<script src="assets/js/axios-0.18.0.js"></script>
+
+<script>
+
+    // Vue.config.productionTip = false;
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            pic: "/assets/images/logo.png",
+            cookie: "张三",
+            userId: '',//用户id
+            
+
+            tableDate: {
+                name: '',
+                userPhone: '',
+                problemType: '',
+                problemDetails: '',
+                userId: '',
+            },
+            
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            this.cookiename();
+        },
+
+        methods: {
+
+            //cookie方法估计是关键字有问题，该方法无问题
+            cookiename() {
+                axios.get("/users/cookie").then((res) => {
+                    this.tableDate.name = res.data.cookie;
+                    this.cookie = res.data.cookie;
+                    this.tableDate.userId=res.data.id;
+                    axios.get("/user/"+res.data.id).then((res)=>{
+                        this.tableDate.userPhone=res.data.userId;
+                    })
+                })
+            },
+            exit() {
+                axios.delete("/users/cookie").then((res) => {
+                })
+            },
+            sendMessage(){
+                axios.post("http://localhost:10010/contacts",this.tableDate).then((res)=>{
+                    if(res.data){
+                        this.$message.success("发送成功");
+                    }else{
+                        this.$message.error("发送失败");
+                    }
+                })
+            }
+
+            // handleDelete(index, row) {
+            //   console.log(index, row);
+            // }
+        },
+
+    })
+
+</script>
+
+
+</body>
+
+</html>

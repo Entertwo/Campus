@@ -1,0 +1,43 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: gataway
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: user_service1
+          uri: lb://UserService
+          predicates:
+            - Path=/user/**,/users/**,/managers/**,/users2/**
+        - id: shop_service1
+          uri: lb://ShopService
+          predicates:
+            - Path=/shops/**
+        - id: contact_service1
+          uri: lb://ContactsService
+          predicates:
+            - Path=/contacts/**
+        - id: rim_service1
+          uri: lb://RimService
+          predicates:
+            - Path=/rims/**
+
+
+      globalcors: # 全局的跨域处理
+        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: # 允许哪些网站的跨域请求
+              - "http://localhost:8081"
+            allowedMethods: # 允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" # 允许在请求中携带的头信息
+            allowCredentials: true # 是否允许携带cookie
+            maxAge: 360000 # 这次跨域检测的有效期

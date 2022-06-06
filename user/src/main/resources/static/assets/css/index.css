@@ -1,0 +1,9 @@
+.register{ 
+    border-radius: 4px;
+    border: 1px solid #fe7300; 
+  }
+
+.title_font_color{
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+

@@ -1,0 +1,48 @@
+# Compiled class file
+*.class
+
+.mtj.tmp/
+hs_err_pid*
+.idea
+*.bak
+*.rar
+classes
+lib
+.gradle
+build
+out
+log
+# Eclipse
+.project
+.classpath
+.settings
+
+# Intellij
+*.ipr
+*.iml
+*.iws
+.idea/
+
+# Maven
+target
+
+
+# Log file
+*.log
+log/
+
+# out
+**/out/
+
+# Mac
+.DS_Store
+
+# others
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+temp/

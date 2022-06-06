@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>互助平台</title>
+
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+
+    <link rel="stylesheet" href="assets/css/mutualhelp.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+<!--w3l-header-->
+<div id="app">
+    <header class="w3l-header-nav">
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">校园 <span>互助</span></a>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item @@home__active">
+                            <a class="nav-link" href="index.html">首页</a>
+                        </li>
+                        <li class="nav-item  active">
+                            <a class="nav-link" href="mutualhelp.html">互助</a>
+                        </li>
+                      <!--  <li class="nav-item @@services__active">
+                            <a class="nav-link" href="secondhand.html">二手交易</a>
+                        </li>-->
+                        <li>
+                            <el-dropdown>
+                                  <span class="el-dropdown-link">
+                                    订单中心<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <a href="SendOrder.html">
+                                        <el-dropdown-item>代送订单</el-dropdown-item>
+                                    </a>
+                                    <a href="demanOrder.html">
+                                        <el-dropdown-item>需求订单</el-dropdown-item>
+                                    </a>
+                                    <!--<a href="">
+                                        <el-dropdown-item>二手订单</el-dropdown-item>
+                                    </a>-->
+                                    <!-- <el-dropdown-item divided>蚵仔煎</el-dropdown-item> -->
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </li>
+                        <li class="nav-item @@contact__active">
+                            <a class="nav-link" href="contact.html">留言</a>
+                        </li>
+
+                    </ul>
+
+
+                    <!--//search-right-->
+
+                    <div class="box-support">
+                        <p>{{cookie}}欢迎 <a href="index.html" @click="exit()"><i class="el-icon-circle-close"></i>退出</a></p>
+                    </div>
+                    <!--//search-right-->
+
+                </div>
+            </div>
+        </nav>
+        <!--//nav-->
+    </header>
+    <!-- //w3l-header -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-3">
+                <h2 class="title">互助</h2>
+            </div>
+        </div>
+    </section>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="index.html">首页</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span>互助</li>
+            </ul>
+        </div>
+    </section>
+    <!-- features-4 -->
+    <section class="w3l-services-6-main">
+        <div class="services-6 py-5">
+            <div class="container py-md-3">
+
+
+                <!-- 按钮设计 -->
+                <h1 class="title">互帮互助</h1>
+                <!-- <div class="add-btn" >
+                <el-button type="primary" size="small" @click="">新增酒店</el-button>
+              </div> -->
+                <div class="addButton">
+                    <el-button type="primary" @click="addButton()" plain>添加需求商品</el-button>
+                </div>
+                <div class="search">
+                    <el-input v-model="search" class="searchButtonText" placeholder="搜索代送商品"></el-input>
+                </div>
+                <div class="searchButton">
+                    <el-button icon="el-icon-search" @Click="searchQuery()" circle></el-button>
+                </div>
+
+
+                <!-- 数据 -->
+                <template>
+                    <el-table :data="tableData" style="width: 100%">
+                        <el-table-column type="expand">
+                            <template slot-scope="props">
+                                <div style="width: 500px;" class="data_left">
+                                    <el-form label-position="left" inline class="demo-table-expand">
+                                        <el-form-item label="商品 ID">
+                                            <span>{{ props.row.id }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="商品名称">
+                                            <span>{{ props.row.name }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="商品描述">
+                                            <span>{{ props.row.shopDesc }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="价格" class="price">
+                                            <span>{{ props.row.price}}</span>元
+                                        </el-form-item>
+
+                                        <el-form-item label="收货地址">
+                                            <span>{{ props.row.address }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="商家名称">
+                                            <span>{{ props.row.user.name }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="商家手机号">
+                                            <span>{{ props.row.user.userId }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="分数">
+                                            <span>{{ props.row.user.score }}</span>分
+                                        </el-form-item>
+                                        <!--      <el-image :src="tableData.props.row.pic" alt="" style="width:80px;height:80px;border:none;" ></el-image> -->
+                                    </el-form>
+                                </div>
+
+                                <div class="data_right">
+                                    <el-form label-position="right" inline class="demo-table-expand">
+                                        <el-form-item label="商品图片">
+                                            <img :src="props.row.pic" width="300px" height="300px">
+                                        </el-form-item>
+                                    </el-form>
+                                </div>
+
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="商品名称" prop="name" align="center">
+                        </el-table-column>
+                        <el-table-column label="描述" prop="shopDesc" align="center">
+                        </el-table-column>
+                        <el-table-column label="价格" prop="price" align="center" class="price">
+                        </el-table-column>
+                        <el-table-column label="操作" align="center">
+                            <template slot-scope="scope">
+                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">代送</el-button>
+                                <!-- <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </template>
+
+                <!--分页组件-->
+                <div class="pagination-container pagin">
+
+                    <el-pagination class="pagiantion" @current-change="handleCurrentChange"
+                                   :current-page="pagination.currentPage" :page-size="pagination.pageSize"
+                                   layout="total, prev, pager, next, jumper" :total="pagination.total">
+
+                    </el-pagination>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- team -->
+    <!--  //Fun facts section -->
+    <section class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container py-lg-4">
+                <div class="row footer-top-29">
+                    <div class="footer-list-29 col-lg-4">
+                        <h6 class="footer-title-29">关于公司</h6>
+                        <p>自主测试，研发，设计，构造，来自于安阳师范学院，根据黑马程序员学习技术构建</p>
+                        <div class="main-social-footer-29 mt-4">
+                            <!--<a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                            <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                            <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                            <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-8 footer-list-29 footer-1 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">留言</h6>
+                        <ul>
+                            <li>
+                                <p><span class="fa fa-map-marker"></span> 安阳师范学院</p>
+                            </li>
+                            <li><a href=""><span class="fa fa-phone"></span> 17630966258</a></li>
+                            <li><a href="" class="mail"><span class="fa fa-envelope-open-o"></span>
+                                1176616218@qq.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 footer-list-29 footer-2 mt-lg-0 mt-5">
+
+                        <ul>
+                            <h6 class="footer-title-29">有用的链接</h6>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">互助平台</a></li>
+                            <!--<li><a href="#blog"> Blog posts</a></li>-->
+                            <li><a href="contact.html">留言</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">最新消息</h6>
+                        <div class="footer-post mb-4">
+                            <a href="#blog-single">给你带来不一样的体验..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+                        <div class="footer-post">
+                            <a href="#blog-single">创造高质量服务..</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> 3月 9, 2020</p>
+                        </div>
+
+                    </div>
+                    <!--<div class="col-lg-12 footer-list-29 footer-4 mt-5">
+                      <div class="column1 align-self">
+                        <h6 class="footer-title-29 mb-1">Subscribe to our Newsletter </h6>
+                        <p>Enter your email and receive the latest news from us.</p>
+                      </div>
+                      <div class="column1">
+                        <form action="#" class="subscribe" method="post">
+                          <input type="email" name="email" placeholder="Your Email Address" required="">
+                          <button><span class="fa fa-envelope-o"></span></button>
+                        </form>
+                      </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center"> 2022.5欢迎体验.</p>
+            </div>
+        </div>
+
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            &#10548;
+        </button>
+    </section>
+</div>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- /move top -->
+</section>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- Template JavaScript -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+
+<script src="assets/js/owl.carousel.js"></script>
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/vue.js"></script>
+
+<script src="assets/plugins/elementui/index.js"></script>
+
+<script src="assets/js/axios-0.18.0.js"></script>
+
+<script>
+
+    // Vue.config.productionTip = false;
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            pic: "/assets/images/logo.png",
+            cookie: "张三",
+            sendId: '',//绑定是谁送的
+            tableData: [{
+                id: '12987126',
+                name: '好滋好味鸡蛋仔',
+                shopDesc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                price: 15,
+                pic: "/assets/images/logo.png",
+
+                user: {
+                    name: "1",
+                    id: 58,
+                    userId: 555555,
+                }
+            }, {
+                id: '12987126',
+                name: '好滋好味鸡蛋仔',
+                shopDesc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                price: 15,
+                pic: "/assets/images/logo.png",
+                user: {
+                    name: "1",
+                    id: 58,
+                    userId: 555555,
+                }
+            }, {
+                id: '12987126',
+                name: '好滋好味鸡蛋仔',
+                shopDesc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                price: 15,
+                pic: "/assets/images/about1.jpg",
+                user: {
+                    name: "1",
+                    id: 58,
+                    userId: 555555,
+                }
+            }, {
+                id: '12987126',
+                name: '好滋好味鸡蛋仔',
+                shopDesc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                price: 15,
+                pic: "/assets/images/logo.png",
+                user: {
+                    name: "1",
+                    id: 58,
+                    userId: 555555,
+                }
+            }
+            ],
+            search: "",
+
+            formData: {},//表单数据
+            pagination: {//分页相关模型数据
+                currentPage: 1,//当前页码
+                pageSize: 10,//每页显示的记录数
+                total: 0,//总记录数
+            }
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+            this.cookiename();
+
+        },
+
+        methods: {
+
+            getAll() {
+                parm="?name="+this.search;
+                parm+="&userId="+this.sendId;
+                axios.get("http://localhost:10010/shops"+"/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/tradeFiled/0/elasticseartch"+parm).then((res) => {
+                    this.tableData = res.data.shops;
+                        // this.pagination.pageSize=res.data.size;
+                        this.pagination.total=res.data.total;
+                //        http://localhost:8082/shops
+                })
+            },
+            handleEdit(index, row) {
+                // console.log(index, row);
+                row.sendId=this.sendId;
+                axios.put("http://localhost:10010/shops/tradeFiled",row).then((res)=>{
+                        if(res.data){
+                            this.$message.success("代送请求成功，请尽快代送");
+                        }else{
+                            this.$message.error("尊敬的用户您好，你目前的代送状态未激活，不能参加配送");
+                        }
+                }).finally(()=>{
+                    this.getAll();
+                })
+
+            },
+            //切换页码
+            handleCurrentChange(currentPage) {
+                this.pagination.currentPage = currentPage;
+                this.getAll();
+            },
+            searchQuery() {
+                this.getAll();
+            },
+            addButton() {
+                window.location.href = "add.html";
+            },
+            //cookie方法估计是关键字有问题，该方法无问题
+            cookiename() {
+                axios.get("/users/cookie").then((res) => {
+                    this.cookie = res.data.cookie;
+                    this.sendId=res.data.id;
+                    this.getAll();
+                })
+            },
+            exit() {
+                axios.delete("/users/cookie").then((res) => {
+                })
+            },
+
+            // handleDelete(index, row) {
+            //   console.log(index, row);
+            // }
+        },
+
+    })
+
+</script>
+
+
+</body>
+
+</html>

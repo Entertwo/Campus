@@ -1,0 +1,90 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+.box{
+  /* border: 1px solid #fe7300; */
+  height: 600px;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  
+  -webkit-box-shadow: #666 0px 0px 40px;
+  -moz-box-shadow: #666 0px 0px 40px;
+  box-shadow: #666 0px 0px 40px;
+  margin-top: 5%;
+ 
+}
+.box_left{
+  height: 600px;
+  float: left;
+  width: 50%;
+  background: url(../images/registerbackground.png) no-repeat 0px 0px;
+}
+.box_left_container{
+  color: rgb(255, 255, 255);
+  height: 200px;
+  padding: 40px 80px 0px;
+}
+.box_left_content{
+  color: rgb(255, 255, 255);
+  padding-top: 60px;
+  height: 250px;
+  padding: 20px 80px 0px;
+}
+.left_footer{
+  padding: 20px 80px 0px;
+  height: auto;
+  color: #fff;
+  font-size: 14px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.box_right{
+  height: 600px;
+  float: left;
+  width: 50%;
+}
+.box_right_container{
+  height: 400px;
+  padding: 60px 80px 48px;
+}
+.box_right_content{
+  padding-top: 60px;
+}
+.pull-right{
+  -webkit-text-size-adjust: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Liberation Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, SimSun, "WenQuanYi Zen Hei Sharp", sans-serif;
+  font-size: 13px;
+  line-height: 3;
+  color: #40485b;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: inherit;
+  float: right;
+}
+a{
+  color: #005980;
+}
+.user_field{
+  padding-top: 20px;
+}
+.password_field{
+  
+}
+.submit{
+  width: 100%;
+}
+.right_footer{
+  padding: 20px 80px 0px;
+  height: auto;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 12px;
+  border-top: 1px solid rgb(0, 0, 0);
+  text-align: center;
+}

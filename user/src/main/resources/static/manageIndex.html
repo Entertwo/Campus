@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>互助平台</title>
+
+    <!-- <link rel="stylesheet" href="assets/css/style-starter.css"> -->
+
+    <link rel="stylesheet" href="assets/css/administrator.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <!--w3l-header-->
+    <div id="app">
+        <el-container>
+            
+            <el-container>
+              <el-aside width="200px">
+                <div class="left">
+                   
+                    <el-row class="tac"  style="height: 100%;">
+                        <el-col :span="12" style="height: 100%;">
+                            <el-menu
+                              default-active="1"
+                              class="el-menu-vertical-demo"
+                              @open="handleOpen"
+                              @close="handleClose"
+                              background-color="#304156"
+                              text-color="#fff"
+                              active-text-color="#ffd04b"
+                              align="left">
+                              <el-menu-item index="">后端管理系统</el-menu-item>
+                              <el-menu-item index="1" @click="index()">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title" >首页</span>
+                              </el-menu-item>
+                              <el-submenu index="2" >
+                                <template slot="title">
+                                  <i class="el-icon-setting"></i>
+                                  <span>系统管理</span>
+                                </template>
+                                <div align="center">
+                                  <el-menu-item index="2-1" @click="user()">用户管理</el-menu-item>
+                                  <el-menu-item index="2-2" @click="managePeople()">管理员管理</el-menu-item>
+                                  <el-menu-item index="2-3"  @click="shop()">商品信息</el-menu-item>
+                                </div>
+                              </el-submenu>
+                              <!-- <el-menu-item index="2">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title">导航二</span>
+                              </el-menu-item> -->
+                              <!-- <el-menu-item index="3" disabled>
+                                <i class="el-icon-document"></i>
+                                <span slot="title">导航三</span>
+                              </el-menu-item>
+                              <el-menu-item index="4">
+                                <i class="el-icon-setting"></i>
+                                <span slot="title">导航四</span>
+                              </el-menu-item> -->
+                                <el-menu-item index="3" @click="contact()">
+                                    <i class="el-icon-document"></i>
+                                    <span slot="title" >留言板</span>
+                                </el-menu-item>
+                            </el-menu>
+                          </el-col>
+                    </el-row>
+                </div>
+                
+                </el-aside>
+              <el-main>
+                <div class="header">
+                    <div class="header_name">首页</div>
+                </div>
+
+
+                <div class="right">
+                    <div class="card-panel" href="#icon-peoples">
+                        <img class="tubiao" src="assets/images/tubiao1.png" height="60px" width="60px">
+                        <div class="tubiaotext">
+                            <div class="tubiaotexttop">留言量</div>
+                            <div class="tubiaotextbottom">{{contactCount}}条</div>
+                        </div>
+                    </div>
+                    <div class="card-panel">
+                        <img class="tubiao" src="assets/images/tubiao2.png" height="60px" width="60px">
+                        <div class="tubiaotext">
+
+                            <div class="tubiaotexttop">用户数</div>
+                            <div class="tubiaotextbottom">{{userCount}}</div>
+                        </div>
+                    </div>
+                    <div class="card-panel">
+                        <img class="tubiao" src="assets/images/tubiao3.png" height="60px" width="60px">
+                        <div class="tubiaotext">
+                            <div class="tubiaotexttop">总交易金额</div>
+                            <div class="tubiaotextbottom">{{shopSumPrice}}元</div>
+                        </div>
+                    </div>
+                    <div class="card-panel">
+                        <img class="tubiao" src="assets/images/tubiao4.png" height="60px" width="60px">
+                        <div class="tubiaotext">
+                            <div class="tubiaotexttop">商品数</div>
+                            <div class="tubiaotextbottom">{{shopCount}}件</div>
+                        </div>
+                    </div>
+                    <div id="main" style="height: 500px;width: 95%;float: left;margin-top: 40px;margin-left: 30px;"></div>
+                </div>
+
+              </el-main>
+            </el-container>
+          </el-container>
+       
+   
+    </div>
+
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+
+    <!-- Template JavaScript -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+
+    <script src="assets/js/owl.carousel.js"></script>
+
+
+
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+
+    <script src="assets/js/vue.js"></script>
+
+    <script src="assets/plugins/elementui/index.js"></script>
+
+    <script src="assets/js/axios-0.18.0.js"></script>
+
+    <script>
+
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                isCollapse: true,
+                contactCount: 10000,
+                userCount: 10000,
+                shopCount: 10000,
+                shopSumPrice: 10000,
+            },
+            //钩子函数，VUE对象初始化完成后自动执行
+            created() {
+               this.getAll();
+            },
+            methods: {
+                getAll(){
+                    this.getContactCount();
+                    this.getUserCount();
+                    this.getShopCount();
+                    this.getShopPriceCount();
+                },
+                getContactCount(){
+                    axios.get("http://localhost:10010/contacts/count").then((res)=>{
+                        this.contactCount=res.data;
+                    })
+                },
+                getUserCount(){
+                    axios.get("http://localhost:10010/users/count").then((res)=>{
+                        this.userCount=res.data;
+                    })
+                },
+                getShopCount(){
+                    axios.get("http://localhost:10010/shops/count").then((res)=>{
+                        this.shopCount=res.data;
+                    })
+                },
+                getShopPriceCount(){
+                    axios.get("http://localhost:10010/shops/sum/price").then((res)=>{
+                        this.shopSumPrice=res.data;
+                    })
+                },
+                handleOpen(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                user(){
+                  window.location.href="manageUser.html";
+                },
+                managePeople(){
+                  window.location.href="managePeople.html";
+                },
+                shop(){
+                    window.location.href="manageShop.html";
+                },
+                contact(){
+                    window.location.href="manageContact.html";
+                },
+                index(){
+                    window.location.href="manageIndex.html";
+                },
+            }
+        })
+
+
+    </script>
+
+    <script crossorigin="anonymous"
+            integrity="sha512-1ktr2kdJH3RNHnxw1UMGhmCIdpJwaZe0UIeT5i3tlwYifbAADW8PJDaBZtDLBz7Xsd0LYyaQGbjNe0g2n3JEbg=="
+            src="https://lib.baomitu.com/echarts/5.3.2-rc.1/echarts.common.js"></script>
+
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            title: {
+                text: '每天的代送量于成交量'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {},
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: { readOnly: false },
+                    magicType: { type: ['line', 'bar'] },
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: []
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} 件'
+                }
+            },
+            series: [
+                {
+                    name: '代送量',
+                    type: 'line',
+                    data: [],
+                    markPoint: {
+                        data: [
+                            { type: 'max', name: 'Max' },
+                            { type: 'min', name: 'Min' }
+                        ]
+                    },
+                    markLine: {
+                        data: [{ type: 'average', name: 'Avg' }]
+                    }
+                },
+                {
+                    name: '已送达',
+                    type: 'line',
+                    data: [],
+                    markPoint: {
+                        data: [
+                            { type: 'max', name: 'Max' },
+                            { type: 'min', name: 'Min' }
+                        ]
+                        // data: [{ name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }]
+                    },
+                    markLine: {
+                        data: [
+                            { type: 'average', name: 'Avg' },
+                            [
+                                {
+                                    symbol: 'none',
+                                    x: '90%',
+                                    yAxis: 'max'
+                                },
+                                {
+                                    symbol: 'circle',
+                                    label: {
+                                        position: 'start',
+                                        formatter: 'Max'
+                                    },
+                                    type: 'max',
+                                    name: '最高点'
+                                }
+                            ]
+                        ]
+                    }
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+        fetch("http://localhost:10010/shops/echarts").then(response => response.json()).then(res =>{
+            res.forEach(item =>{
+                option.series[0].data.push(item.startCount);
+                option.xAxis.data.push(item.date)
+            })
+            myChart.setOption(option);
+        });
+        fetch("http://localhost:10010/shops/echarts2").then(response => response.json()).then(res =>{
+            res.forEach(item =>{
+                option.series[1].data.push(item.endCount);
+            })
+            myChart.setOption(option);
+        })
+
+    </script>
+
+</body>
+
+</html>

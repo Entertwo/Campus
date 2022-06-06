@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- 页面meta -->
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>基于SpringBoot的校园互助平台</title>
+
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <!-- 引入样式 -->
+
+    <link rel="stylesheet" href="assets/plugins/elementui/index.css">
+
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/register.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="box">
+            <div class="box_left">
+                <div class="box_left_container">
+                    <img src="assets/images/logo.png" width="100px">
+                    <h2>安阳师范学院</h2>
+                </div>
+                <div class="box_left_content">
+                    校园互助平台，帮助许许多多的大学生相互扶持，互帮互助。
+                    期待未来校园互助平台继续发展，成为每一个学校必备的网站！
+                </div>
+                <div class="left_footer">
+                    <span>基于SpringBoot的校园互助平台</span>
+                </div>
+            </div>
+            <div class="box_right">
+                <div class="box_right_container">
+                    <h2><span>注册</span>
+                        <span class="pull-right">
+                            已有帐号？
+                            <a href="login.html">点此登陆</a>
+                        </span>
+                    </h2>
+
+                    <el-form :model="user" :rules="rules" ref="user" class="demo-ruleForm">
+                        <div class="user_field">
+                            <el-form-item prop="name">
+                                <el-input v-model="user.name" placeholder="请输入姓名"></el-input>
+                            </el-form-item>
+                            <el-form-item prop="userId">
+                                <el-input v-model="user.userId" placeholder="请输入手机号"></el-input>
+                            </el-form-item>
+                        </div>
+                        <div class="password_field">
+                            <el-form-item prop="password">
+                                <el-input type="password" placeholder="密码不少于6位" v-model="user.password"
+                                    autocomplete="off"></el-input>
+                            </el-form-item>
+                        </div>
+                        <el-button type="primary" @click="submitForm('user')" class="submit">注册</el-button>
+                    </el-form>
+
+                </div>
+                <div class="right_footer">
+                    <a href="index.html">回到首页</a><br>
+                    <span>永远相信美好的事即将发生</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- 引入组件库 -->
+
+<script src="assets/js/vue.js"></script>
+
+<script src="assets/plugins/elementui/index.js"></script>
+
+<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+
+<script src="assets/js/axios-0.18.0.js"></script>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            isHeard: true,
+            user: {
+                userId: "",
+                password: "",
+                name: "",
+            },
+            rules: {
+                userId: [
+                    { required: true, message: '手机号为必填项', trigger: 'blur' },
+                    { min: 11, max: 11, message: '请输入11位手机号', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '密码为必填项', trigger: 'blur' },
+                    { min: 6, max: 20, message: '密码不少于6位', trigger: 'blur' }
+                ],
+                name: [
+                    { required: true, message: '姓名为必填项', trigger: 'blur' },
+                    { min: 1, max: 10, message: '请输入1-10个汉字或字符', trigger: 'blur' }
+                ],
+            },
+        },
+
+        //钩子函数，VUE对象初始化完成后自动执行
+        created() {
+
+        },
+        methods: {
+            click() {
+                //this.isShow=!this.isShow; 
+                //console.log(this.isShow);
+            },
+            animate() {
+                var re = /^1\d{10}$/;
+                let str = this.user.userId;
+                if (re.test(str)) {
+                    return true;
+                } else {
+                    this.$message.info("抱歉手机号不合法");
+                    return false;
+                }
+            },
+            submitForm(user) {
+                this.$refs[user].validate((valid) => {
+                    if (valid && this.animate()) {
+                    /*if (valid) {*/
+                        axios.post("http://localhost:10010/users",this.user).then((res)=>{
+                            if(res.data.flag){
+                                this.$message.success("注册成功，即将跳转到登陆界面");
+                                setTimeout(() => {
+                                    window.location.href = "login.html";
+                                }, 1000);
+                            }else{
+                                this.$message.error("注册失败,手机号已注册");
+                            }
+                        })
+                    }
+                    if(valid==false){
+                        this.$message.error("错误提交");
+                    }
+                });
+            },
+
+
+        }
+
+    })
+
+</script>
+
+</html>

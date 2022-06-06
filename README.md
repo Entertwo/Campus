@@ -5,7 +5,7 @@
 
 #### 软件架构
 
-![输入图片说明](https://images.gitee.com/uploads/images/2022/0606/162853_ff48079e_9708949.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2022/0606/162853_ff48079e_9708949.png "屏幕截图.png")  
 
 #### 使用说明
 
@@ -30,25 +30,25 @@
 
 #### 界面展示  
  **登录界面**   
-![输入图片说明](user/src/main/resources/static/assets/images/loginimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/loginimage.png)  
  **校园互助平台主界面**  
- ![输入图片说明](user/src/main/resources/static/assets/images/index1image.png)
-![输入图片说明](user/src/main/resources/static/assets/images/index2image.png)
-![输入图片说明](user/src/main/resources/static/assets/images/index3image.png)
-![输入图片说明](user/src/main/resources/static/assets/images/index4image.png)
+ ![输入图片说明](user/src/main/resources/static/assets/images/index1image.png)  
+![输入图片说明](user/src/main/resources/static/assets/images/index2image.png)  
+![输入图片说明](user/src/main/resources/static/assets/images/index3image.png)  
+![输入图片说明](user/src/main/resources/static/assets/images/index4image.png)  
  **互帮互助界面**    
-![输入图片说明](user/src/main/resources/static/assets/images/mutualhelp1image.png)
-![输入图片说明](user/src/main/resources/static/assets/images/mutualhelp2image.png)
+![输入图片说明](user/src/main/resources/static/assets/images/mutualhelp1image.png)  
+![输入图片说明](user/src/main/resources/static/assets/images/mutualhelp2image.png)  
  **代送订单**   
-![输入图片说明](user/src/main/resources/static/assets/images/SendOrderimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/SendOrderimage.png)  
  **需求订单**   
-![输入图片说明](user/src/main/resources/static/assets/images/demanOrderimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/demanOrderimage.png)  
  **评分按钮**     
-![输入图片说明](user/src/main/resources/static/assets/images/scorebuttonimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/scorebuttonimage.png)  
  **留言界面**   
-![输入图片说明](user/src/main/resources/static/assets/images/contactimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/contactimage.png)  
  **后台管理主界面**   
-![输入图片说明](user/src/main/resources/static/assets/images/manageIndeximage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/manageIndeximage.png)  
  **后台用户管理界面**   
-![输入图片说明](user/src/main/resources/static/assets/images/manageUserimage.png)
+![输入图片说明](user/src/main/resources/static/assets/images/manageUserimage.png)  
 

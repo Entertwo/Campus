@@ -1,0 +1,137 @@
+需要提前在虚拟机创建elasticsearch和kibana，并且加入统一网络，在kibana中配置文档
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+GET /campus/_search
+{
+  "query": {
+    "match": {
+      "all": "后营2"
+    }
+  }
+}
+GET /campus/_analyze
+{
+  "analyzer": "completion_analyzer", 
+  "text": "一瓶"
+}
+GET /campus/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /campus/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "all": "后营2"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "match": {
+            "userId":  "17"
+          }
+        }
+      ]
+      
+    }
+  }
+}
+DELETE /campus
+#校园
+PUT /campus
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "text_anlyzer": {
+          "tokenizer": "ik_max_word",
+          "filter": "py"
+        },
+        "completion_analyzer": {
+          "tokenizer": "ik_max_word",
+          "filter": "py"
+        }
+      },
+      "filter": {
+        "py": {
+          "type": "pinyin",
+          "keep_full_pinyin": true,
+          "keep_joined_full_pinyin": true,
+          "keep_original": true,
+          "limit_first_letter_length": 16,
+          "remove_duplicated_term": true,
+          "none_chinese_pinyin_tokenize": false,
+          "keep_first_letter": true
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id":{
+        "type": "keyword"
+      },
+      "name":{
+        "type": "text",
+        "analyzer": "text_anlyzer",
+        "search_analyzer": "ik_max_word",
+        "copy_to": "all"
+      },
+      "address":{
+        "type": "text",
+        "analyzer": "ik_smart",
+        "copy_to": "all"
+      },
+      "shopDesc":{
+        "type": "text",
+        "analyzer": "ik_smart",
+        "copy_to": "all"
+      },
+      "price":{
+        "type": "integer",
+        "index": false
+      },
+      "pic":{
+        "type": "keyword",
+        "index": false
+      },
+      "userId":{
+        "type": "keyword"
+      },
+      "sendId":{
+        "type": "keyword",
+        "index": false
+      },
+      "starTime":{
+        "type": "keyword",
+        "index": false
+      },
+      "endTime":{
+        "type": "keyword",
+        "copy_to": "all",
+        "index": false
+      },
+     
+      "all":{
+        "type": "text",
+        "analyzer": "text_anlyzer",
+        "search_analyzer": "ik_smart"
+      },
+      "suggestion":{
+          "type": "completion",
+          "analyzer": "completion_analyzer"
+      }
+    }
+  }
+}

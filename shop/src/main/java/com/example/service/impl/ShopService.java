@@ -21,7 +21,6 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.WriteRequest;
-import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -50,9 +49,11 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
     /**
      * 根据传来的页码进行查询
-     *返回交易字段为0的
+     * 返回交易字段为0的
+     *
      * @param currentPage 当前页
-     * @param pageSize 每页大小
+     * @param pageSize    每页大小
+     * @param shop        商店
      * @return 返回Ipage
      */
     @Override
@@ -76,9 +77,10 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
-     *返回交易字段为0的
+     * 返回交易字段为0的
+     *
      * @param currentPage 当前页
-     * @param pageSize 每页大小
+     * @param pageSize    每页大小
      * @return 返回Ipage
      */
     @Override
@@ -101,15 +103,15 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
     /**
      * 在elasticsearch中查找
+     *
      * @param currentPage 当前页
-     * @param pageSize 每页大小
-     * @param shop 查的参数
-     * @return  list集合
+     * @param pageSize    每页大小
+     * @param shop        查的参数
+     * @return list集合
      */
     @Override
     public PageResult getAllTradeFiled0ByElasticsearch(Integer currentPage, Integer pageSize, Shop shop) {
         try {
-
             //创建请求
             SearchRequest request = new SearchRequest("campus");
             //查询条件
@@ -121,7 +123,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
             //发起请求
             SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-            //System.out.println(handleRespose(response));
+
             SearchHits hits = response.getHits();
             //获取总条数
             long total = hits.getTotalHits().value;
@@ -141,13 +143,13 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
             return new PageResult(total,shops);
         } catch (IOException e) {
             throw  new RuntimeException(e);
-            //e.printStackTrace();
         }
 
     }
 
     /**
-     * 删除商品
+     * 删除商品通过id
+     *
      * @param id 商品id
      * @return boolean
      */
@@ -157,17 +159,22 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 得到echars
      * 查询echarts数据
-     * @return
+     *
+     * @return {@link List}<{@link Echarts}>
      */
     @Override
     public List<Echarts> getEchars() {
         List<Echarts> echarts=shopMapper.getEcharts();
         return echarts;
     }
+
     /**
+     * 得到echars2
      * 查询echarts数据
-     * @return
+     *
+     * @return {@link List}<{@link Echarts}>
      */
     @Override
     public List<Echarts> getEchars2() {
@@ -205,9 +212,10 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
     /**
      * 查询全部
-     * @param currentPage
-     * @param pageSize
-     * @return
+     *
+     * @param currentPage 当前页面
+     * @param pageSize    页面大小
+     * @return {@link IPage}<{@link Shop}>
      */
     @Override
     public IPage<Shop> getAll(Integer currentPage, Integer pageSize) {
@@ -224,6 +232,14 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
         return shopIPage;
     }
 
+    /**
+     * 得到所有
+     *
+     * @param currentPage 当前页面
+     * @param pageSize    页面大小
+     * @param shop        商店
+     * @return {@link IPage}<{@link Shop}>
+     */
     @Override
     public IPage<Shop> getAll(Integer currentPage, Integer pageSize, Shop shop) {
         IPage<Shop> page = new Page<Shop>(currentPage, pageSize);
@@ -241,6 +257,11 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
         return shopIPage;
     }
 
+    /**
+     * 被贸易filed0商店数
+     *
+     * @return {@link Integer}
+     */
     @Override
     public Integer getShopsCountByTradeFiled0() {
         QueryWrapper<Shop> queryWrapper =new QueryWrapper<>();
@@ -249,12 +270,16 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 被发送商店id
      * SendOrder界面
      * 获取代送商品,代送id要相等
      * 发送feign远端调用，添加user信息
      * 添加user信息
-     * @param sendId
-     * @return
+     *
+     * @param sendId      把身份证
+     * @param currentPage 当前页面
+     * @param pageSize    页面大小
+     * @return {@link IPage}<{@link Shop}>
      */
     @Override
     public IPage<Shop> getShopsBySendId(Integer sendId, Integer currentPage, Integer pageSize) {
@@ -272,11 +297,13 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 被用户id商店
      * 根据代送id，查询代送的单子
-     * @param userId
-     * @param currentPage
-     * @param pageSize
-     * @return
+     *
+     * @param userId      用户id
+     * @param currentPage 当前页面
+     * @param pageSize    页面大小
+     * @return {@link IPage}<{@link Shop}>
      */
     @Override
     public IPage<Shop> getShopsByUserId(Integer userId, Integer currentPage, Integer pageSize) {
@@ -293,9 +320,11 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 更新商店
      * DemanOrder的弹出框，修改商品
-     * @param shop
-     * @return
+     *
+     * @param shop 商店
+     * @return {@link Boolean}
      */
     @Override
     public Boolean updateShop(Shop shop) {
@@ -309,12 +338,14 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 同意取消发送订单
      * 同意取消
      * 修改交易字段为0
      * 删除代送人信息
      * 设置时间为当前时间
-     * @param shopId
-     * @return
+     *
+     * @param shopId 商店id
+     * @return {@link Boolean}
      */
     @Override
     public Boolean agreeCancleSendOrder(Integer shopId) {
@@ -332,9 +363,11 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 同意接收货物
      * 添加end_time时间，
-     * @param shop
-     * @return
+     *
+     * @param shop 商店
+     * @return {@link Boolean}
      */
     @Override
     public Boolean AgreeToReceiveTheGoods(Shop shop) {
@@ -348,10 +381,12 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 到达
      * 修改tradeFiled字段为2
      * 商品已送达
-     * @param id
-     * @return
+     *
+     * @param id id
+     * @return {@link Boolean}
      */
     @Override
     public Boolean arrived(Integer id) {
@@ -362,8 +397,10 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
+     * 让商店价格计算
      * 查询交易时间存在的价格
-     * @return
+     *
+     * @return {@link Double}
      */
     @Override
     public Double getShopsPriceCount() {
@@ -379,10 +416,12 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
 
     /**
+     * 更新贸易了
      * 代送之后1-3---取消交易
-     *根据shopid修改tradeFiled3
-     * @param id
-     * @return
+     * 根据shopid修改tradeFiled3
+     *
+     * @param id id
+     * @return {@link Boolean}
      */
     @Override
     public Boolean updateTradeFiled(Integer id) {
@@ -393,7 +432,9 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
 
 
     /**
+     * 插入商店
      * 插入商品数据
+     *
      * @param shop 商品数据
      * @return boolean
      */
@@ -408,9 +449,11 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
     }
 
     /**
-     *  更新交易字段
-     *  设置时间
-     *  添加sendId代送人信息
+     * 更新商店和提交
+     * 更新交易字段
+     * 设置时间
+     * 添加sendId代送人信息
+     *
      * @param shop 商品信息
      * @return boolean
      */
@@ -419,7 +462,6 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
         //查询用户的代送状态是否激活
         Integer sendId = shop.getSendId();
         User user = userClient.findById(sendId);
-//        System.out.println(user);
         if(user.getStatus()) {
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -438,7 +480,12 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
         }
         return false;
     }
-    //保存elasticSearch
+
+    /**
+     * 保存文档
+     *保存elasticSearch
+     * @param id id
+     */
     public void  saveDocument(int id){
         try {
             //查数据库
@@ -454,7 +501,12 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> implements IShopS
             e.printStackTrace();
         }
     }
-    //删除elasticSearch文档
+
+    /**
+     * 删除elasticSearch文档
+     *
+     * @param id id
+     */
     public void  deleteDocument(int id){
         try {
             //创建请求路径

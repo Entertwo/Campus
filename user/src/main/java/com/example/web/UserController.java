@@ -16,10 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * 用户控制器
+ *
+ * @author tians
+ * @date 2022/09/05
+ */
 @RestController
-
 public class UserController {
-    //    public User queryById(@PathVariable("id") Long id) {
     @Autowired
     private IUserService userService;
     @Autowired
@@ -27,8 +31,9 @@ public class UserController {
 
     /**
      * 查询cookie
+     *
      * @param request a
-     * @return  R
+     * @return R
      */
     @GetMapping("/users/cookie")
     public R getCookie(HttpServletRequest request) {
@@ -55,8 +60,9 @@ public class UserController {
 
     /**
      * 根据用户id查用户
+     *
      * @param id 用户id
-     * @return  用户
+     * @return 用户
      */
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Integer id) {
@@ -76,9 +82,12 @@ public class UserController {
     }*/
 
     /**
+     * 得到所有用户通过电话
      * ManagerUser页面
+     *
      * @param currentPage 当前页
-     * @param pageSize 每页显示数
+     * @param pageSize    每页显示数
+     * @param user        用户
      * @return user列表IPage的user
      */
     @GetMapping("/users/{currentPage}/{pageSize}")
@@ -87,8 +96,10 @@ public class UserController {
     }
 
     /**
+     * 得到用户数量
      * 查询用户数
-     * @return
+     *
+     * @return {@link Integer}
      */
     @GetMapping("users/count")
     public Integer getUserCount(){
@@ -96,10 +107,12 @@ public class UserController {
     }
 
     /**
+     * 插入用户
      * 注册插入数据
-     *添加用户
+     * 添加用户
+     *
      * @param user 用户
-     * @return  用R封装boolean
+     * @return 用R封装boolean
      */
     @PostMapping("/users")
     public R insertUser(@RequestBody User user) {
@@ -111,7 +124,10 @@ public class UserController {
     }
 
     /**
-     * @param user 用户信息
+     * 查询用户
+     *
+     * @param user     用户信息
+     * @param response 响应
      * @return 登陆验证
      */
     @PostMapping("/users2")
@@ -126,8 +142,6 @@ public class UserController {
             queryWrapper.eq("password",user.getPassword());
             User one = userService.getOne(queryWrapper);
             setCookie(response, one.getName(),String.valueOf(one.getId()));
-//            setCookie(response, String.valueOf(one.getId()));
-//            System.out.println(one);
         }else{
             if(manageService.select(user)){
                 r.setManager(true);
@@ -137,6 +151,13 @@ public class UserController {
         return r;
     }
 
+    /**
+     * setCookie
+     *
+     * @param response 响应
+     * @param name     名字
+     * @param id       id
+     */
     public void setCookie(HttpServletResponse response, String name,String id) {
         // 创建一个 cookie对象
         Cookie cookie = new Cookie("name", name);
@@ -152,7 +173,8 @@ public class UserController {
      * 用户确认收货后执行该操作
      * 根据传递的userId
      * 添加用户评分
-     * @param id 用户id
+     *
+     * @param id    用户id
      * @param value 分数
      * @return 真假
      */
@@ -163,9 +185,11 @@ public class UserController {
     }
 
     /**
+     * 更新用户
      * 更新用户数据
+     *
      * @param user 用户数据
-     * @return  Boolean
+     * @return Boolean
      */
     @PutMapping("/users")
     public Boolean updateUser(@RequestBody User user ) {
@@ -173,8 +197,10 @@ public class UserController {
     }
 
     /**
+     * 更新状态通过id
      * 根据id更新用户状态
-     * @param id 用户id
+     *
+     * @param id     用户id
      * @param status 代送状态
      * @return Boolean
      */
@@ -185,7 +211,8 @@ public class UserController {
 
     /**
      * 删除cookie
-     * @param request 请求cookie
+     *
+     * @param request  请求cookie
      * @param response 把cookie的生命周期为
      */
     @DeleteMapping("/users/cookie")

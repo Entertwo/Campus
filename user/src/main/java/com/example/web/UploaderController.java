@@ -14,9 +14,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
+/**
+ * 上传控制器
+ *
+ * @author tians
+ * @date 2022/09/05
+ */
 @RestController
 public class UploaderController {
 
+    /**
+     * 处理文件上传
+     *
+     * @param file     文件
+     * @param response 响应
+     * @return {@link String}
+     * @throws IOException ioexception
+     */
     @PostMapping("/uploader")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         // 获取上传的文件名称
@@ -30,7 +44,6 @@ public class UploaderController {
         File dest = new File(realPath + fileName);
         System.out.println(dest);
         String a="D:\\Java\\Project\\campus\\user\\src\\main\\resources\\static\\assets\\images\\";
-//        System.out.println(dest);
         String str2="";
         try {
             // 上传的文件被保存了

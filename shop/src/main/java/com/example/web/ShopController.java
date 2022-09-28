@@ -75,7 +75,7 @@ public class ShopController {
     @GetMapping("/{currentPage}/{pageSize}/tradeFiled/0/elasticseartch")
     PageResult getAllTradeFiledByelasticserch0(@PathVariable Integer currentPage, @PathVariable Integer pageSize,Shop shop){
         //第一版
-        //IPage<Shop> shops = shopService.getAllTradeFiled0(currentPage, pageSize,shop);
+        //IPage<Shop> result = shopService.getAllTradeFiled0(currentPage, pageSize,shop);
         PageResult result = shopService.getAllTradeFiled0ByElasticsearch(currentPage, pageSize, shop);
         return result;
     }

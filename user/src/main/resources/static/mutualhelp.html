@@ -397,7 +397,9 @@
                 parm="?name="+this.search;
                 parm+="&userId="+this.sendId;
                 axios.get("http://localhost:10010/shops"+"/"+this.pagination.currentPage+"/"+this.pagination.pageSize+"/tradeFiled/0/elasticseartch"+parm).then((res) => {
-                    this.tableData = res.data.shops;
+                    this.tableData = res.data.records;
+                    //elasticsearch使用下面这个
+                    //this.tableData = res.data.shops;
                         // this.pagination.pageSize=res.data.size;
                         this.pagination.total=res.data.total;
                 //        http://localhost:8082/shops

@@ -37,7 +37,7 @@ public class ShopController {
         IPage<Shop> shops = shopService.getAll(currentPage, pageSize,shop);
         return shops;
     }
-    /*//不用elasticsearch使用该方法
+    /*
     @GetMapping("/{currentPage}/{pageSize}")
     IPage<Shop> getAll(@PathVariable Integer currentPage, @PathVariable Integer pageSize){
         IPage<Shop> shops = shopService.getALl(currentPage, pageSize);
@@ -73,10 +73,11 @@ public class ShopController {
      * @return {@link PageResult}
      */
     @GetMapping("/{currentPage}/{pageSize}/tradeFiled/0/elasticseartch")
-    PageResult getAllTradeFiledByelasticserch0(@PathVariable Integer currentPage, @PathVariable Integer pageSize,Shop shop){
-        //第一版
-        //IPage<Shop> result = shopService.getAllTradeFiled0(currentPage, pageSize,shop);
-        PageResult result = shopService.getAllTradeFiled0ByElasticsearch(currentPage, pageSize, shop);
+    IPage<Shop> getAllTradeFiledByelasticserch0(@PathVariable Integer currentPage, @PathVariable Integer pageSize, Shop shop){
+        //第一版,不使用elasticsearch
+        IPage<Shop> result = shopService.getAllTradeFiled0(currentPage, pageSize,shop);
+        //使用elasticsearch需要在mutualhelp的402行进行取消注释
+        //PageResult result = shopService.getAllTradeFiled0ByElasticsearch(currentPage, pageSize, shop);
         return result;
     }
 

@@ -77,7 +77,6 @@ public class ShopController {
         //第一版
         //IPage<Shop> shops = shopService.getAllTradeFiled0(currentPage, pageSize,shop);
         PageResult result = shopService.getAllTradeFiled0ByElasticsearch(currentPage, pageSize, shop);
-        //System.out.println(result);
         return result;
     }
 

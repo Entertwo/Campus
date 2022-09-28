@@ -56,4 +56,3 @@
  **后台用户管理界面**   
 ![输入图片说明](user/src/main/resources/static/assets/images/manageUserimage.png)  
 
-&emsp;&emsp;QQ：1176616218  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;微信：17630966258

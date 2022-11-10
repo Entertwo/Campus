@@ -37,7 +37,7 @@
 
 
 ### 界面展示  
- **登录界面**   
+ **注册界面**   
 ![输入图片说明](user/src/main/resources/static/assets/images/loginimage.png)  
  **校园互助平台主界面**  
  ![输入图片说明](user/src/main/resources/static/assets/images/index1image.png)  

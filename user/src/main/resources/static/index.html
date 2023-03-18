@@ -56,13 +56,19 @@
                         <li class="nav-item @@contact__active">
                             <a class="nav-link" href="contact.html">留言</a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item" v-show="login">
                             <a class="nav-link" href="login.html">登陆</a>
                         </li>
-                        <li class="nav-item register">
+                        <li class="nav-item register" v-show="register">
                             <a class="nav-link" href="register.html">注册</a>
                         </li>
                     </ul>
+
+                    <div class="box-support" v-show="cookieFlag">
+                        <p>{{cookie}}欢迎 <a href="index.html" @click="exit()">
+                            <i class="el-icon-circle-close"></i>退出</a></p>
+                    </div>
+
                 </div>
 
             </div>
@@ -238,7 +244,7 @@
                 <div class="row footer-top-29">
                     <div class="footer-list-29 col-lg-4">
                         <h6 class="footer-title-29">关于公司</h6>
-                        <p>自主测试，研发，设计，构造，来自于安阳师范学院，根据黑马程序员学习技术构建</p>
+                        <p>自主测试，研发，设计，构造，来自于临沂大学，根据黑马程序员学习技术构建</p>
                         <div class="main-social-footer-29 mt-4">
                             <!--<a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
                             <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
@@ -250,11 +256,11 @@
                         <h6 class="footer-title-29">留言</h6>
                         <ul>
                             <li>
-                                <p><span class="fa fa-map-marker"></span> 安阳师范学院</p>
+                                <p><span class="fa fa-map-marker"></span> 临沂大学</p>
                             </li>
-                            <li><a href=""><span class="fa fa-phone"></span> 17630966258</a></li>
+                            <li><a href=""><span class="fa fa-phone"></span> 19999999</a></li>
                             <li><a href="" class="mail"><span class="fa fa-envelope-open-o"></span>
-                                1176616218@qq.com</a></li>
+                                19999999@qq.com</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-4 footer-list-29 footer-2 mt-lg-0 mt-5">
@@ -455,6 +461,9 @@
             },
             shopCount: 0,
             currentPage: 0,
+            login: true,
+            register: true,
+            cookieFlag: false,
         },
 
         //钩子函数，VUE对象初始化完成后自动执行
@@ -462,6 +471,7 @@
             this.getAllShop();
             this.getShopCount();
             this.getRims();
+            this.cookiename();
         },
         methods: {
             click() {
@@ -503,6 +513,21 @@
                     this.rim = res.data;
                     // this.pagination.pageSize = res.data.size;
                     // this.pagination.total = res.data.total;
+                })
+            },
+            //cookie方法估计是关键字有问题，该方法无问题
+            cookiename() {
+                axios.get("/users/cookie").then((res) => {
+                    if(res.data.id){
+                        this.login=false;
+                        this.register=false;
+                        this.cookie=res.data.cookie;
+                        this.cookieFlag=true;
+                    }
+                })
+            },
+            exit() {
+                axios.delete("/users/cookie").then((res) => {
                 })
             },
         }

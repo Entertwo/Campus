@@ -13,7 +13,7 @@
 
 ### 使用说明
  **Nacos**  
-软件地址「nacos」等文件 https://www.aliyundrive.com/s/GzRG3a7r5oQ 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看 
+软件地址「nacos」文件 https://www.aliyundrive.com/s/pBk86cVqGpw 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。 
 <br>访问链接http://localhost:8081/index.html
 <br>在登陆界面输入管理员账号既跳转到http://localhost:8081/manageIndex.html管理员界面
  
